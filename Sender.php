@@ -1,25 +1,28 @@
-<?php
+require_once "Mail.php";
 
-if (isset($_POST['submit'])){
-$name = $_POST['name'];
-$url = $_POST['url'];
+$from = '<fromaddress@gmail.com>';
+$to = '<sardhost62@gmail.com>';
+$subject = 'Hi!';
+$body = "Hi,\n\nHow are you?";
 
-$email_body = "User Name: $name.\n".
-"User Message: $url.\n";
+$headers = array(
+    'From' => $from,
+    'To' => $to,
+    'Subject' => $subject
+);
 
+$smtp = Mail::factory('smtp', array(
+        'host' => 'ssl://smtp.gmail.com',
+        'port' => '465',
+        'auth' => true,
+        'username' => 'sardhost62@gmail.com',
+        'password' => 'pkpk12345'
+    ));
 
-$To = "sardhot62@gmail.com";
-if (mail($to, $name, $url)){
-    $success = "Thank you!"
+$mail = $smtp->send($to, $headers, $body);
 
- }
-
-$headers = "From: $name \r\n";
-
-mail($to,$url,$email_body,$headers);
-
-header("Location: index.html");
-
+if (PEAR::isError($mail)) {
+    echo('<p>' . $mail->getMessage() . '</p>');
+} else {
+    echo('<p>Message successfully sent!</p>');
 }
-
-?>
