@@ -1,7 +1,7 @@
 require_once "Mail.php";
 
 $from = '<fromaddress@gmail.com>';
-$to = '<sardhost62@gmail.com>';
+$to = '<https://r00tsam.github.io/si_samindex.github.io/>';
 $subject = 'Hi!';
 $body = "Hi,\n\nHow are you?";
 
