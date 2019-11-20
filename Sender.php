@@ -27,27 +27,3 @@ if (PEAR::isError($mail)) {
     echo('<p>Message successfully sent!</p>');
 }
 
-function listMessages($service, $userId) {
-  $pageToken = NULL; //ページトークン
-  $messages = array(); //メッセージ
-  $opt_param = array(); //オプションパラメータ
-  do {
-    try {
-      if ($pageToken) {
-        $opt_param['pageToken'] = $pageToken; //ページトークンをセット
-      }
-      //メッセージ一覧を取得
-      $messagesResponse = $service->users_messages->listUsersMessages($userId, $opt_param);
-      if ($messagesResponse->getMessages()) {
-        //マージする
-        $messages = array_merge($messages, $messagesResponse->getMessages());
-        //ページトークン取得
-        $pageToken = $messagesResponse->getNextPageToken();
-      }
-    } catch (Exception $e) {
-      print 'An error occurred: ' . $e->getMessage();
-    }
-  } while ($pageToken);
-  //メッセージを返却
-  return $messages;
-}
