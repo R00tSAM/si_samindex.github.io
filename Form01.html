@@ -10,6 +10,44 @@ body{margin:50px;}
 
 </head>
 <body>
+        form action="javascript:void(0)" name="commentform" id="commentform">
+
+        <ol class=rule>
+            <li>このページに関するご感想・ご質問などをお書き下さい。</li>
+            <li>タグは使用できません。
+            <li>パスワードを設定しておくとご自信の投稿を削除できます。</li>
+            <li>当サイトにふさわしくないと判断した投稿は管理者がことわりなく削除することがあります。</li>
+        </ol>
+    
+        <table>
+            <tr><th align=right style="width:5em;">お名前</th><td><input type="text" name="name" size=20 /></td></tr>
+            <tr><th align=right>パスワード</th><td><input type="password" name="pw"  size=8 maxlength=8/>英数字8文字以内</td></tr>
+            <tr><th align=right>件名</th><td><input type="text" name="title"  size=60 /></td></tr>
+            <tr><td colspan="2"><textarea name="comment" rows=10 style="width:100%"></textarea></td></tr>
+            <tr><td colspan="2" align=right>
+                            <span style="visibility:hidden"><input type="checkbox" name="rulecheck" id="rulecheck" value="1" checked /><label for="rulecheck">上記「コメントに関するお約束」に同意します。</label></span>
+                            <input type="reset" value="リセット" class="commandButton" />
+                            <input type="button" value="送信する"
+                            class="commandButton" onclick="
+                                if (this.form.name.value=='') {
+                                    alert('お名前が記入されていません。');
+                                    return;
+                                }
+                                if (this.form.comment.value=='') {
+                                    alert('コメント本文をご記入ください。');
+                                    return;
+                                }
+                                /*if (this.form.rulecheck.checked==false) {
+                                    alert('「コメントに関するお約束」にご同意ください。');
+                                    return;
+                                }*/
+                                if(confirm('送信してもよろしいですか？')) {
+                                    commentformsubmit();
+                                }" />
+                </td>
+            </tr>
+        </table>
+    </form>
 
 <h3>テスト投稿歓迎</h3>
 このページは<a href="http://www.inetagency.net/doc/comment/3/">「全てのページにコメントフォーム」</a>を改造したもののサンプルページです。<a href="commentform.html">解説ページへ</a>
