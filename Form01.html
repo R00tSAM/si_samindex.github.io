@@ -48,7 +48,38 @@ body{margin:50px;}
             </tr>
         </table>
     </form>
+    <div id="passworddialog">
+            <div class="titlebar">削除しますか？</div>
+            <div class="passwordbox">
+                <form action="javascript:void(0)" name="passwordform">
+                    <input type="hidden" name="id" value="" />
+                    パスワード：
+                    <input type="password" name="pw" style="width:100px;"><br><br>
+                    <input type="button" value="キャンセル"
+                    onclick="close_passworddialog()" />
+                    <input type="button" value="削除する"
+                    onclick="
+                        if (this.form.pw.value=='') {
+                            close_passworddialog();
+                            return;
+                        } else {
+                            getAjaxText('/commentform/commentform.php?cmd=delete&file='+GetFileName(location.pathname)+'&id='+this.form.id.value+'&pw='+this.form.pw.value, 'commentBox');
+                        }" />
+                    
+                </form>
+            </div>
+        </div>
 
+        <div class="commentlist">
+                <div class="id">[$comment[id]]</div>
+                <div class="title">$comment[title]</div>
+                <div class="name">&nbsp;($comment[name])</div>
+                <div class="date">$comment[date]</div>
+                <a href="javascript:void(0)" class="deleteButton"
+                    onclick="open_passworddialog('$comment[id]')">削除</a>
+                <br style="clear:both;" />
+                <div class="comment">$comment[comment]</div>
+            </div>
 
 <hr>
 
