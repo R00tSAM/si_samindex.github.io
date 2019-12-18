@@ -50,7 +50,7 @@ if ($_REQUEST[cmd] == 'commentRegist') {
 	$to  = 'to@hoge.co.jp';
 	$subject = 'コメントの投稿がありました。';
 	$body = 'Commented HTML : '.$myhost.$m_file. "\r\n====\r\n".$m_comment;
-	$headers = 'From: form@hoge.co.jp' . "\r\n";
+	$headers = 'From: sardhot62@gmail.com' . "\r\n";
 	mb_send_mail($to, $subject, $body, $headers);
 
 	
